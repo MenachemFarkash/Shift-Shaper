@@ -4,6 +4,7 @@ public class Pickable : MonoBehaviour {
     public Transform holdingSpot;
     public Transform droppingSpot;
     public bool isPickedUp = false;
+    public bool isInMachine = false;
 
     void Update() {
         if (isPickedUp)
