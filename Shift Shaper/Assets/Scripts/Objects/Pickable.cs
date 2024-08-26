@@ -15,11 +15,13 @@ public class Pickable : MonoBehaviour {
         holdingSpot = PlayerManager.instance.player.GetComponent<PickupManager>().holdingSpot.transform;
         transform.position = holdingSpot.position;
         transform.parent = holdingSpot;
+        gameObject.GetComponent<Collider2D>().enabled = false;
     }
 
     public void HandleRelease() {
         transform.parent = null;
         isPickedUp = false;
         transform.position = PlayerManager.instance.player.transform.position;
+        gameObject.GetComponent<Collider2D>().enabled = true;
     }
 }
