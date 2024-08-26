@@ -6,6 +6,9 @@ public class Machine : MonoBehaviour {
     public Transform screen2;
     public Transform screen3Output;
 
+    [Header("Shape Objects")]
+    public GameObject hexagonObject;
+
     public float scaleDownFactor = 0.2f;
     // Start is called before the first frame update
     void Start() {
@@ -44,7 +47,19 @@ public class Machine : MonoBehaviour {
             objectsInMachine[1] = newObject;
             //newObject.transform.localScale -= new Vector3(scaleDownFactor, scaleDownFactor, scaleDownFactor);
             newObject.transform.position = screen2.position;
+            ProcessObjects();
             return;
+        }
+    }
+
+    public void ProcessObjects() {
+        if (objectsInMachine[0] != null && objectsInMachine[1] != null) {
+            if (objectsInMachine[0].name == "Triangle" && objectsInMachine[1].name == "Triangle") {
+                GameObject newObject = Instantiate(hexagonObject, screen3Output.transform.position, Quaternion.identity);
+                foreach (GameObject objectInMachine in objectsInMachine) {
+                    Destroy(objectInMachine);
+                }
+            }
         }
     }
 }
